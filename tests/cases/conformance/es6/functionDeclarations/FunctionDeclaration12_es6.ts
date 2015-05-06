@@ -1,1 +1,0 @@
-var v = function * yield() { }
