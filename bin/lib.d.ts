@@ -876,12 +876,18 @@ interface RegExpConstructor {
 
 declare var RegExp: RegExpConstructor;
 
-declare class Error {
+interface Error {
     name: string;
     message: string;
-  
-    constructor(message?: string);
 }
+
+interface ErrorConstructor {
+    new (message?: string): Error;
+    (message?: string): Error;
+    prototype: Error;
+}
+
+declare var Error: ErrorConstructor;
 
 interface EvalError extends Error {
 }
