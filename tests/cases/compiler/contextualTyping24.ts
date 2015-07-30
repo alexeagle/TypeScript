@@ -1,1 +1,0 @@
-var foo:(a:{():number; (i:number):number; })=>number; foo = function(a:string){return 5};

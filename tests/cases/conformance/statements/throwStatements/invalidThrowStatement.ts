@@ -1,3 +1,0 @@
-throw; 
-
-export throw null;
