@@ -1876,6 +1876,7 @@ interface Map<K, V> {
 }
 
 interface MapConstructor {
+    new (): Map<any, any>;
     new <K, V>(): Map<K, V>;
     new <K, V>(iterable: Iterable<[K, V]>): Map<K, V>;
     prototype: Map<any, any>;
@@ -1913,6 +1914,7 @@ interface Set<T> {
 }
 
 interface SetConstructor {
+    new (): Set<any>;
     new <T>(): Set<T>;
     new <T>(iterable: Iterable<T>): Set<T>;
     prototype: Set<any>;
