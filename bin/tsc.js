@@ -24601,6 +24601,7 @@ var ts;
                 write("], function(" + exportFunctionForFile + ") {");
                 writeLine();
                 increaseIndent();
+                emitEmitHelpers(node);
                 emitCaptureThisForNodeIfNecessary(node);
                 emitSystemModuleBody(node, startIndex);
                 decreaseIndent();
@@ -24660,6 +24661,7 @@ var ts;
                 }
             }
             function emitAMDModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 writeLine();
                 write("define(");
@@ -24679,6 +24681,7 @@ var ts;
                 write("});");
             }
             function emitCommonJSModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 emitExportStarHelper();
                 emitCaptureThisForNodeIfNecessary(node);
@@ -24687,6 +24690,7 @@ var ts;
                 emitExportEquals(false);
             }
             function emitUMDModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 writeLines("(function (deps, factory) {\n    if (typeof module === 'object' && typeof module.exports === 'object') {\n        var v = factory(require, exports); if (v !== undefined) module.exports = v;\n    }\n    else if (typeof define === 'function' && define.amd) {\n        define(deps, factory);\n    }\n})(");
                 emitAMDDependencies(node, false);
@@ -24706,6 +24710,7 @@ var ts;
                 exportSpecifiers = undefined;
                 exportEquals = undefined;
                 hasExportStars = false;
+                emitEmitHelpers(node);
                 emitCaptureThisForNodeIfNecessary(node);
                 emitLinesStartingAt(node.statements, startIndex);
                 emitTempDeclarations(true);
@@ -24744,10 +24749,7 @@ var ts;
                     }
                 }
             }
-            function emitSourceFileNode(node) {
-                writeLine();
-                emitDetachedComments(node);
-                var startIndex = emitDirectivePrologues(node.statements, false);
+            function emitEmitHelpers(node) {
                 if (!compilerOptions.noEmitHelpers) {
                     if ((languageVersion < 2) && (!extendsEmitted && resolver.getNodeCheckFlags(node) & 8)) {
                         writeLines(extendsHelper);
@@ -24765,6 +24767,11 @@ var ts;
                         paramEmitted = true;
                     }
                 }
+            }
+            function emitSourceFileNode(node) {
+                writeLine();
+                emitDetachedComments(node);
+                var startIndex = emitDirectivePrologues(node.statements, false);
                 if (ts.isExternalModule(node) || compilerOptions.isolatedModules) {
                     if (languageVersion >= 2) {
                         emitES6Module(node, startIndex);
@@ -24787,6 +24794,7 @@ var ts;
                     exportSpecifiers = undefined;
                     exportEquals = undefined;
                     hasExportStars = false;
+                    emitEmitHelpers(node);
                     emitCaptureThisForNodeIfNecessary(node);
                     emitLinesStartingAt(node.statements, startIndex);
                     emitTempDeclarations(true);

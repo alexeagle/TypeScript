@@ -25240,7 +25240,7 @@ var ts;
                 }
                 else if (node.kind === 128 /* ComputedPropertyName */) {
                     // if this is a decorated computed property, we will need to capture the result
-                    // of the property expression so that we can apply decorators later. This is to ensure 
+                    // of the property expression so that we can apply decorators later. This is to ensure
                     // we don't introduce unintended side effects:
                     //
                     //   class C {
@@ -25761,8 +25761,8 @@ var ts;
                 }
                 return false;
             }
-            // Returns 'true' if the code was actually indented, false otherwise. 
-            // If the code is not indented, an optional valueToWriteWhenNotIndenting will be 
+            // Returns 'true' if the code was actually indented, false otherwise.
+            // If the code is not indented, an optional valueToWriteWhenNotIndenting will be
             // emitted instead.
             function indentIfOnDifferentLines(parent, node1, node2, valueToWriteWhenNotIndenting) {
                 var realNodesAreOnDifferentLines = !ts.nodeIsSynthesized(parent) && !nodeEndIsOnSameLineAsNodeStart(node1, node2);
@@ -26112,7 +26112,7 @@ var ts;
                 emit(node.whenFalse);
                 decreaseIndentIf(indentedBeforeColon, indentedAfterColon);
             }
-            // Helper function to decrease the indent if we previously indented.  Allows multiple 
+            // Helper function to decrease the indent if we previously indented.  Allows multiple
             // previous indent values to be considered at a time.  This also allows caller to just
             // call this once, passing in all their appropriate indent values, instead of needing
             // to call this helper function multiple times.
@@ -26905,7 +26905,7 @@ var ts;
                 // - language version is ES6+
                 // - node is synthesized
                 // - node is not identifier (can happen when tree is malformed)
-                // - node is definitely not name of variable declaration. 
+                // - node is definitely not name of variable declaration.
                 // it still can be part of parameter declaration, this check will be done next
                 if (languageVersion >= 2 /* ES6 */ ||
                     ts.nodeIsSynthesized(node) ||
@@ -27171,7 +27171,7 @@ var ts;
                     emitSignatureParameters(node);
                 }
                 if (!node.body) {
-                    // There can be no body when there are parse errors.  Just emit an empty block 
+                    // There can be no body when there are parse errors.  Just emit an empty block
                     // in that case.
                     write(" { }");
                 }
@@ -27199,7 +27199,7 @@ var ts;
                     emitDownLevelExpressionFunctionBody(node, body);
                     return;
                 }
-                // For es6 and higher we can emit the expression as is.  However, in the case 
+                // For es6 and higher we can emit the expression as is.  However, in the case
                 // where the expression might end up looking like a block when emitted, we'll
                 // also wrap it in parentheses first.  For example if you have: a => <foo>{}
                 // then we need to generate: a => ({})
@@ -27676,9 +27676,9 @@ var ts;
                     }
                 }
                 // If the class has static properties, and it's a class expression, then we'll need
-                // to specialize the emit a bit.  for a class expression of the form: 
+                // to specialize the emit a bit.  for a class expression of the form:
                 //
-                //      class C { static a = 1; static b = 2; ... } 
+                //      class C { static a = 1; static b = 2; ... }
                 //
                 // We'll emit:
                 //
@@ -27940,7 +27940,7 @@ var ts;
                     //
                     // The emit for a method is:
                     //
-                    //   Object.defineProperty(C.prototype, "method", 
+                    //   Object.defineProperty(C.prototype, "method",
                     //       __decorate([
                     //           dec,
                     //           __param(0, dec2),
@@ -27948,10 +27948,10 @@ var ts;
                     //           __metadata("design:paramtypes", [Object]),
                     //           __metadata("design:returntype", void 0)
                     //       ], C.prototype, "method", Object.getOwnPropertyDescriptor(C.prototype, "method")));
-                    // 
+                    //
                     // The emit for an accessor is:
                     //
-                    //   Object.defineProperty(C.prototype, "accessor", 
+                    //   Object.defineProperty(C.prototype, "accessor",
                     //       __decorate([
                     //           dec
                     //       ], C.prototype, "accessor", Object.getOwnPropertyDescriptor(C.prototype, "accessor")));
@@ -28033,7 +28033,7 @@ var ts;
             }
             function shouldEmitTypeMetadata(node) {
                 // This method determines whether to emit the "design:type" metadata based on the node's kind.
-                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata 
+                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata
                 // compiler option is set.
                 switch (node.kind) {
                     case 135 /* MethodDeclaration */:
@@ -28046,7 +28046,7 @@ var ts;
             }
             function shouldEmitReturnTypeMetadata(node) {
                 // This method determines whether to emit the "design:returntype" metadata based on the node's kind.
-                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata 
+                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata
                 // compiler option is set.
                 switch (node.kind) {
                     case 135 /* MethodDeclaration */:
@@ -28056,7 +28056,7 @@ var ts;
             }
             function shouldEmitParamTypesMetadata(node) {
                 // This method determines whether to emit the "design:paramtypes" metadata based on the node's kind.
-                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata 
+                // The caller should have already tested whether the node has decorators and whether the emitDecoratorMetadata
                 // compiler option is set.
                 switch (node.kind) {
                     case 202 /* ClassDeclaration */:
@@ -28806,7 +28806,7 @@ var ts;
                 }
                 function writeExportedName(node) {
                     // do not record default exports
-                    // they are local to module and never overwritten (explicitly skipped) by star export 
+                    // they are local to module and never overwritten (explicitly skipped) by star export
                     if (node.kind !== 65 /* Identifier */ && node.flags & 256 /* Default */) {
                         return;
                     }
@@ -28828,7 +28828,7 @@ var ts;
                 }
             }
             function processTopLevelVariableAndFunctionDeclarations(node) {
-                // per ES6 spec: 
+                // per ES6 spec:
                 // 15.2.1.16.4 ModuleDeclarationInstantiation() Concrete Method
                 // - var declarations are initialized to undefined - 14.a.ii
                 // - function/generator declarations are instantiated - 16.a.iv
@@ -28960,7 +28960,7 @@ var ts;
                 // hoist variable if
                 // - it is not block scoped
                 // - it is top level block scoped
-                // if block scoped variables are nested in some another block then 
+                // if block scoped variables are nested in some another block then
                 // no other functions can use them except ones that are defined at least in the same block
                 return (ts.getCombinedNodeFlags(node) & 12288 /* BlockScoped */) === 0 ||
                     ts.getEnclosingBlockScopeContainer(node).kind === 228 /* SourceFile */;
@@ -29144,10 +29144,10 @@ var ts;
                 // System modules has the following shape
                 // System.register(['dep-1', ... 'dep-n'], function(exports) {/* module body function */})
                 // 'exports' here is a function 'exports<T>(name: string, value: T): T' that is used to publish exported values.
-                // 'exports' returns its 'value' argument so in most cases expressions 
+                // 'exports' returns its 'value' argument so in most cases expressions
                 // that mutate exported values can be rewritten as:
-                // expr -> exports('name', expr). 
-                // The only exception in this rule is postfix unary operators, 
+                // expr -> exports('name', expr).
+                // The only exception in this rule is postfix unary operators,
                 // see comment to 'emitPostfixUnaryExpression' for more details
                 ts.Debug.assert(!exportFunctionForFile);
                 // make sure that  name of 'exports' function does not conflict with existing identifiers
@@ -29167,6 +29167,7 @@ var ts;
                 write("], function(" + exportFunctionForFile + ") {");
                 writeLine();
                 increaseIndent();
+                emitEmitHelpers(node);
                 emitCaptureThisForNodeIfNecessary(node);
                 emitSystemModuleBody(node, startIndex);
                 decreaseIndent();
@@ -29189,8 +29190,8 @@ var ts;
                 // factory function.
                 var unaliasedModuleNames = []; // names of modules with no corresponding parameters in
                 // factory function.
-                var importAliasNames = []; // names of the parameters in the factory function; these 
-                // parameters need to match the indexes of the corresponding 
+                var importAliasNames = []; // names of the parameters in the factory function; these
+                // parameters need to match the indexes of the corresponding
                 // module names in aliasedModuleNames.
                 // Fill in amd-dependency tags
                 for (var _a = 0, _b = node.amdDependencies; _a < _b.length; _a++) {
@@ -29233,6 +29234,7 @@ var ts;
                 }
             }
             function emitAMDModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 writeLine();
                 write("define(");
@@ -29252,6 +29254,7 @@ var ts;
                 write("});");
             }
             function emitCommonJSModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 emitExportStarHelper();
                 emitCaptureThisForNodeIfNecessary(node);
@@ -29260,6 +29263,7 @@ var ts;
                 emitExportEquals(false);
             }
             function emitUMDModule(node, startIndex) {
+                emitEmitHelpers(node);
                 collectExternalModuleInfo(node);
                 // Module is detected first to support Browserify users that load into a browser with an AMD loader
                 writeLines("(function (deps, factory) {\n    if (typeof module === 'object' && typeof module.exports === 'object') {\n        var v = factory(require, exports); if (v !== undefined) module.exports = v;\n    }\n    else if (typeof define === 'function' && define.amd) {\n        define(deps, factory);\n    }\n})(");
@@ -29280,10 +29284,11 @@ var ts;
                 exportSpecifiers = undefined;
                 exportEquals = undefined;
                 hasExportStars = false;
+                emitEmitHelpers(node);
                 emitCaptureThisForNodeIfNecessary(node);
                 emitLinesStartingAt(node.statements, startIndex);
                 emitTempDeclarations(true);
-                // Emit exportDefault if it exists will happen as part 
+                // Emit exportDefault if it exists will happen as part
                 // or normal statement emit.
             }
             function emitExportEquals(emitAsReturn) {
@@ -29321,12 +29326,7 @@ var ts;
                     }
                 }
             }
-            function emitSourceFileNode(node) {
-                // Start new file on new line
-                writeLine();
-                emitDetachedComments(node);
-                // emit prologue directives prior to __extends
-                var startIndex = emitDirectivePrologues(node.statements, false);
+            function emitEmitHelpers(node) {
                 // Only emit helpers if the user did not say otherwise.
                 if (!compilerOptions.noEmitHelpers) {
                     // Only Emit __extends function when target ES5.
@@ -29347,6 +29347,13 @@ var ts;
                         paramEmitted = true;
                     }
                 }
+            }
+            function emitSourceFileNode(node) {
+                // Start new file on new line
+                writeLine();
+                emitDetachedComments(node);
+                // emit prologue directives prior to __extends
+                var startIndex = emitDirectivePrologues(node.statements, false);
                 if (ts.isExternalModule(node) || compilerOptions.isolatedModules) {
                     if (languageVersion >= 2 /* ES6 */) {
                         emitES6Module(node, startIndex);
@@ -29369,6 +29376,7 @@ var ts;
                     exportSpecifiers = undefined;
                     exportEquals = undefined;
                     hasExportStars = false;
+                    emitEmitHelpers(node);
                     emitCaptureThisForNodeIfNecessary(node);
                     emitLinesStartingAt(node.statements, startIndex);
                     emitTempDeclarations(true);
@@ -29411,7 +29419,7 @@ var ts;
                         // emitting the module as well.
                         return shouldEmitEnumDeclaration(node);
                 }
-                // If this is the expression body of an arrow function that we're down-leveling, 
+                // If this is the expression body of an arrow function that we're down-leveling,
                 // then we don't want to emit comments when we emit the body.  It will have already
                 // been taken care of when we emitted the 'return' statement for the function
                 // expression body.
